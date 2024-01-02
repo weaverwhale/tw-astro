@@ -2,7 +2,7 @@
 import { siteName, description } from '@/constants'
 import Layout from '@/layouts/Layout.astro'
 import Navigation from '@/components/Navigation.astro'
-import Summary from '@/components/Summary.astro'
+import SummaryComponent from '@/components/Summary.astro'
 import fetchSummaryData from '@/helpers/fetchSummaryData'
 
 const title = `Summary - ${siteName}`
@@ -21,5 +21,5 @@ const data = await fetchSummaryData(token, shop).catch((error: any) => {
 
 <Layout title={title} description={description}>
   <Navigation {shop} />
-  <Summary {token} {shop} {data} />
+  <SummaryComponent {token} {data} />
 </Layout>

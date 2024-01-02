@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-export async function fetchSummaryData(key: string, shop: string) {
+export const fetchSummaryData = async (key: string, shop: string) => {
   if (!key) throw new Error('No key provided')
   if (!shop) throw new Error('No shop provided')
 

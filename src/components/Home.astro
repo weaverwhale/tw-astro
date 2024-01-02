@@ -94,10 +94,10 @@ const { token } = Astro.props
 </div>
 
 <script>
-  const tokenInput = document.getElementById('token')
-  const shopInput = document.getElementById('shop')
-  const submitButton = document.getElementById('submit')
-  const goToSummaryButton = document.getElementById('go-to-summary')
+  const tokenInput = document.getElementById('token') as HTMLInputElement
+  const shopInput = document.getElementById('shop') as HTMLInputElement
+  const submitButton = document.getElementById('submit') as HTMLButtonElement
+  const goToSummaryButton = document.getElementById('go-to-summary') as HTMLButtonElement
 
   submitButton?.addEventListener('click', () => {
     const token = tokenInput?.value ?? null
