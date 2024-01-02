@@ -10,7 +10,6 @@ export const links = [
 ]
 
 export const loggedInLinks = [
-  ...links,
   {
     name: 'Summary',
     url: '/summary',

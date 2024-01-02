@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { token } = Astro.props
+if (token) Astro.redirect('/summary')
 ---
 
 <div class="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
@@ -115,5 +116,7 @@ const { token } = Astro.props
     `
 
     window.location.href = '/summary'
+
+    setInterval(() => {}, 100)
   })
 </script>
