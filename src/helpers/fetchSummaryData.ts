@@ -18,16 +18,19 @@ export async function fetchSummaryData(key: string, shop: string) {
         start: moment().startOf('day'),
         end: moment().endOf('day'),
       },
+      todayHour: moment().hour(),
     }),
   }
 
   const response = await fetch(url, options)
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch data. Server responded with status: ${response.status}`)
+    throw new Error(
+      `Failed to fetch data. Server responded with status: ${response.status}, ${response.statusText}`,
+    )
   }
 
-  return response.redirected ? response.url : null // Include URL if redirected
+  return response.json()
 }
 
 export default fetchSummaryData
