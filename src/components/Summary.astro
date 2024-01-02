@@ -1,17 +1,79 @@
 ---
+import {
+  formatNumber,
+  formatSparkChartData,
+  formatValue,
+  groupData,
+  toNumber,
+} from '@/helpers/chartHelpers'
+import type { DictatedData, IServiceMap } from '@/types/Types'
+import { ServiceMap } from '@/types/Types'
+import { SourceIcons } from '@/components/SourceIcons'
+
 interface Props {
   token: string | null
   data: any
 }
 
 const { token, data } = Astro.props
+const dictatedData = groupData(data?.metrics ?? [])
 ---
 
-<div class="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
-  <div class="max-w-md w-full rounded-xl shadow-lg p-5 mt-16 bg-white">
-    <div class="flex flex-col items-center justify-center">
-      <h1 class="text-3xl font-bold mb-4">Summary</h1>
-      {data ? JSON.stringify(data) : 'No data'}
-    </div>
+<div
+  class="max-w-screen-xl m-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20"
+>
+  <div class="flex flex-col items-center justify-center">
+    <h1 class="text-3xl font-bold mb-4">Summary</h1>
+    {
+      Object.keys(dictatedData).map((g: any) => {
+        const group = dictatedData[g] as DictatedData[IServiceMap]
+        const filteredGroup = group.filter((item) => item.values?.current !== 0 && item.delta)
+        const plainTextService = ServiceMap[g as IServiceMap]
+
+        return (
+          filteredGroup.length > 0 && (
+            <div class="mt-4">
+              <div>
+                <h3 class="mb-4 mt-10 flex items-center gap-2 text-xl capitalize">
+                  <SourceIcons source={g as IServiceMap} /> {plainTextService}
+                </h3>
+              </div>
+              <div class="grid w-full flex-wrap items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {group.map((item) => {
+                  const delta = toNumber(item.delta)
+                  const deltaIsPositive =
+                    (delta > 0 && (item.positiveComparison > 0 || !item.positiveComparison)) ||
+                    (delta < 0 && item.positiveComparison < 0)
+
+                  return delta ? (
+                    <div class="w-full rounded border p-4 shadow-md">
+                      <div class="mb-4">
+                        <div class="flex justify-between">
+                          <div>
+                            <strong>{item.title}</strong>
+                          </div>
+
+                          <div class="flex items-center gap-1">
+                            <div class={deltaIsPositive ? 'text-[green]' : 'text-[red]'}>
+                              {delta === 0 ? '-' : delta > 0 ? '↑' : '↓'}
+                            </div>
+                            <span>{formatNumber(item.delta)}%</span>
+                          </div>
+                        </div>
+                        {item.tip && <p class="text-xs">{item.tip}</p>}
+                        <p class="my-2 text-xl font-black">{formatValue(item)}</p>
+                      </div>
+                      {item.charts?.current?.length > 0 && <pre>CHART GOES HERE</pre>}
+                    </div>
+                  ) : (
+                    ''
+                  )
+                })}
+              </div>
+            </div>
+          )
+        )
+      })
+    }
   </div>
 </div>
