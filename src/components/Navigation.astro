@@ -16,7 +16,7 @@ const { shop } = Astro.props
     <div>
       <ul class="flex items-center">
         {
-          (shop ? loggedInLinks : links).map((link, i) => (
+          (shop ? loggedInLinks : links).map((link) => (
             <li class="ml-5">
               <a href={link.url} class="font-display text-lg hover:text-gray-500 transition-all">
                 {link.name}

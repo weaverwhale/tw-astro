@@ -1,25 +1,26 @@
-import bs from 'react-icons/bs'
-const { BsFacebook, BsFillChatRightTextFill, BsInstagram, BsLightningCharge, BsPinterest } = bs
+import {
+  BsFacebook,
+  BsFillChatRightTextFill,
+  BsInstagram,
+  BsLightningCharge,
+  BsPinterest,
+} from 'react-icons/bs'
+import { DiGoogleAnalytics } from 'react-icons/di'
+import {
+  FaAmazon,
+  FaEnvelope,
+  FaLightbulb,
+  FaMoneyCheck,
+  FaShopify,
+  FaSnapchatGhost,
+  FaTiktok,
+} from 'react-icons/fa'
 
-import di from 'react-icons/di'
-const { DiGoogleAnalytics } = di
-
-import fa from 'react-icons/fa'
-const { FaAmazon, FaEnvelope, FaLightbulb, FaMoneyCheck, FaShopify, FaSnapchatGhost, FaTiktok } = fa
-
-import fc from 'react-icons/fc'
-const { FcGoogle } = fc
-
-import gi from 'react-icons/gi'
-const { GiBlender, GiWhaleTail } = gi
-
-import io from 'react-icons/io'
-const { IoIosPeople } = io
-
-import si from 'react-icons/si'
-const { SiSpeedtest } = si
-
-import type { IServiceMap } from '@/types/Types.js'
+import { FcGoogle } from 'react-icons/fc'
+import { GiBlender, GiWhaleTail } from 'react-icons/gi'
+import { IoIosPeople } from 'react-icons/io'
+import { SiSpeedtest } from 'react-icons/si'
+import type { IServiceMap } from '@/types/Types'
 
 const iconMap = {
   amazon: <FaAmazon color="orange" />,
