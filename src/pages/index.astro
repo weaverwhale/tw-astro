@@ -13,11 +13,10 @@ const token = params.get('token')
 if (token && shop) {
   Astro.cookies.set('token', token)
   Astro.cookies.set('shop', shop)
-  Astro.redirect('/summary')
 }
 ---
 
 <Layout title={title} description={description}>
   <Navigation {shop} />
-  <Home {shop} {token} />
+  <Home {token} />
 </Layout>
