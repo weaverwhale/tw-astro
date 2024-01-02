@@ -11,11 +11,10 @@ import { ServiceMap } from '@/types/Types'
 import { SourceIcons } from '@/components/SourceIcons'
 
 interface Props {
-  token: string | null
   data: any
 }
 
-const { token, data } = Astro.props
+const { data } = Astro.props
 const dictatedData = groupData(data?.metrics ?? [])
 ---
 
