@@ -16,7 +16,7 @@ yarn && yarn dev
 
 ## DEMO LINK
 
-http://localhost:3000/?token=900d63a7-6a5e-4131-95aa-85feb3195826&shop=madisonbraids.myshopify.com
+https://tw-astro.netlify.app?token=900d63a7-6a5e-4131-95aa-85feb3195826&shop=madisonbraids.myshopify.com
 
 ## 🟢 Deploy
 
