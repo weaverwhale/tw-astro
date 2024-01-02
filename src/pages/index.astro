@@ -1,0 +1,22 @@
+---
+import { siteName, description } from '@/constants'
+import Layout from '@/layouts/Layout.astro'
+import Navigation from '@/components/Navigation.astro'
+import Home from '@/components/Home.astro'
+
+const title = `Home - ${siteName}`
+const url = Astro.request.url
+const params = new URL(url).searchParams
+const shop = params.get('shop')
+const token = params.get('token')
+
+if (token && shop) {
+  Astro.cookies.set('token', token)
+  Astro.redirect('/summary')
+}
+---
+
+<Layout title={title} description={description}>
+  <Navigation {token} />
+  <Home {token} />
+</Layout>

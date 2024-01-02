@@ -1,0 +1,23 @@
+---
+import { siteName, description } from '@/constants'
+import Layout from '@/layouts/Layout.astro'
+import Navigation from '@/components/Navigation.astro'
+import Summary from '@/components/Summary.astro'
+import fetchSummaryData from '@/helpers/fetchSummaryData'
+
+const title = `Summary - ${siteName}`
+const token = Astro.cookies.get('token')?.value ?? null
+const shop = Astro.cookies.get('shop')?.value ?? null
+
+if (!token || !shop) return Astro.redirect('/')
+
+const data = await fetchSummaryData(token, shop).catch((error: any) => {
+  console.error(error)
+  return null
+})
+---
+
+<Layout title={title} description={description}>
+  <Navigation {token} {shop} />
+  <Summary {token} {shop} {data} />
+</Layout>

@@ -1,0 +1,30 @@
+---
+import { siteName, links, loggedInLinks } from '@/constants'
+
+interface Props {
+  shop: string | null
+}
+
+const { shop } = Astro.props
+---
+
+<div class="sticky top-0 w-full flex justify-center z-30 transition-all">
+  <div class="mx-5 flex h-16 max-w-screen-xl items-center justify-between w-full">
+    <a href="/" class="flex items-center font-display text-2xl">
+      <p class="ml-5 font-bold">{shop ? shop : siteName}</p>
+    </a>
+    <div>
+      <ul class="flex items-center">
+        {
+          (shop ? loggedInLinks : links).map((link, i) => (
+            <li class="ml-5">
+              <a href={link.url} class="font-display text-lg hover:text-gray-500 transition-all">
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</div>

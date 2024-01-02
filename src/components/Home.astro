@@ -1,0 +1,91 @@
+---
+interface Props {
+  token: string | null
+  shop: string | null
+}
+
+const { token, shop } = Astro.props
+---
+
+<div class="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
+  <div class="max-w-md w-full rounded-xl shadow-lg p-5 mt-16 bg-white">
+    <div>
+      <h1 class="text-3xl font-bold mb-4">Welcome</h1>
+      {
+        token ? (
+          <>
+            <p>
+              We have detected your <code>key</code>! You can now view the summary page!
+            </p>
+            <a
+              href="/summary"
+              class="flex justify-center items-center disabled:opacity-30 disabled:pointer-events-none py-2 px-4 rounded-md text-white bg-black hover:bg-black/80 focus:outline-none focus:ring-2 transition duration-200 ease-in-out mt-4 w-full"
+            >
+              Go to Summary Page
+            </a>
+          </>
+        ) : (
+          <>
+            <p>
+              We have not detected a <code>key</code> in the URL. Please provide the{' '}
+              <code>key</code> here for us to get started, or visit the URL with the token provided.
+            </p>
+            <p class="mt-4">
+              For example:
+              <code>localhost:3000?key=YOUR_TW_TOKEN</code>
+            </p>
+            <p class="mt-4">
+              You can obtain your <code>key</code>{' '}
+              <a
+                href="https://app.triplewhale.com/api-keys"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-500 hover:text-blue-700"
+              >
+                here
+              </a>{' '}
+              if you have not done so already.
+            </p>
+            <div class="mt-6 flex flex-col gap-4 w-full">
+              <input
+                type="text"
+                id="token"
+                name="token"
+                class="shadow-sm focus:ring-black focus:border-black block w-full sm:text-sm border-gray-300 rounded-md p-4"
+                placeholder="Your Triple Whale API Key"
+              />
+              <input
+                type="text"
+                id="shop"
+                name="shop"
+                class="shadow-sm focus:ring-black focus:border-black block w-full sm:text-sm border-gray-300 rounded-md p-4"
+                placeholder="Your Shopify Store URL"
+              />
+              <button
+                id="submit"
+                class="flex justify-center items-center disabled:opacity-30 disabled:pointer-events-none py-2 px-4 rounded-md text-white bg-black hover:bg-black/80 focus:outline-none focus:ring-2 transition duration-200 ease-in-out"
+              >
+                Submit
+              </button>
+            </div>
+          </>
+        )
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  const tokenInput = document.getElementById('token')
+  const shopInput = document.getElementById('shop')
+  const submitButton = document.getElementById('submit')
+
+  submitButton?.addEventListener('click', () => {
+    const token = tokenInput?.value ?? null
+    const shop = shopInput?.value ?? null
+
+    if (token && shop) {
+      window.location.href = `/?token=${token}&shop=${shop}`
+    }
+  })
+</script>
