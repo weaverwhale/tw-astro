@@ -7,8 +7,8 @@ import Home from '@/components/Home.astro'
 const title = `Home - ${siteName}`
 const url = Astro.request.url
 const params = new URL(url).searchParams
-const shop = params.get('shop')
-const token = params.get('token')
+const shop = Astro.cookies.get('shop')?.value ?? params?.get('shop') ?? null
+const token = Astro.cookies.get('token')?.value ?? params?.get('token') ?? null
 
 if (token && shop) {
   Astro.cookies.set('token', token)

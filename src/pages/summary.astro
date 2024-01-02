@@ -6,8 +6,10 @@ import Summary from '@/components/Summary.astro'
 import fetchSummaryData from '@/helpers/fetchSummaryData'
 
 const title = `Summary - ${siteName}`
-const token = Astro.cookies.get('token')?.value ?? null
-const shop = Astro.cookies.get('shop')?.value ?? null
+const url = Astro.request.url
+const params = new URL(url).searchParams
+const shop = Astro.cookies.get('shop')?.value ?? params?.get('shop') ?? null
+const token = Astro.cookies.get('token')?.value ?? params?.get('token') ?? null
 
 if (!token || !shop) return Astro.redirect('/')
 

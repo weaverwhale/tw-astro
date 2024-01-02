@@ -16,12 +16,31 @@ const { token } = Astro.props
             <p>
               We have detected your <code>key</code>! You can now view the summary page!
             </p>
-            <a
-              href="/summary"
-              class="flex justify-center items-center disabled:opacity-30 disabled:pointer-events-none py-2 px-4 rounded-md text-white bg-black hover:bg-black/80 focus:outline-none focus:ring-2 transition duration-200 ease-in-out mt-4 w-full"
+            <button
+              id="go-to-summary"
+              class="group flex justify-center items-center disabled:opacity-30 disabled:pointer-events-none py-2 px-4 rounded-md text-white bg-black hover:bg-black/80 focus:outline-none focus:ring-2 transition duration-200 ease-in-out mt-4 w-full"
             >
+              <svg
+                class="hidden motion-reduce:hidden animate-spin -ml-1 mr-3 h-5 w-5 text-white group-disabled:block"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                />
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
               Go to Summary Page
-            </a>
+            </button>
           </>
         ) : (
           <>
@@ -78,6 +97,7 @@ const { token } = Astro.props
   const tokenInput = document.getElementById('token')
   const shopInput = document.getElementById('shop')
   const submitButton = document.getElementById('submit')
+  const goToSummaryButton = document.getElementById('go-to-summary')
 
   submitButton?.addEventListener('click', () => {
     const token = tokenInput?.value ?? null
@@ -86,5 +106,9 @@ const { token } = Astro.props
     if (token && shop) {
       window.location.href = `/?token=${token}&shop=${shop}`
     }
+  })
+
+  goToSummaryButton?.addEventListener('click', () => {
+    goToSummaryButton.disabled = true
   })
 </script>
