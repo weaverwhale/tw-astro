@@ -3,7 +3,7 @@ import { formatNumber, groupByKey, formatValue, groupData, toNumber } from '@/he
 
 import type { DictatedData, IServiceMap } from '@/types/Types'
 import { ServiceMap } from '@/types/Types'
-// import { SourceIcons } from '@/components/SourceIcons'
+import { SourceIcons } from '@/components/SourceIcons'
 import fetchSummaryData from '@/helpers/fetchSummaryData'
 
 export const ClientSummary = ({ token, shop }: { token: string; shop: string }) => {
@@ -44,7 +44,7 @@ export const ClientSummary = ({ token, shop }: { token: string; shop: string }) 
           <div className="mt-4">
             <div>
               <h3 className="mb-4 mt-10 flex items-center gap-2 text-xl capitalize">
-                {/* <SourceIcons source={g as IServiceMap} client:load /> {plainTextService} */}
+                <SourceIcons source={g as IServiceMap} /> {plainTextService}
                 {plainTextService}
               </h3>
             </div>
@@ -73,7 +73,7 @@ export const ClientSummary = ({ token, shop }: { token: string; shop: string }) 
                       {item.tip && <p className="text-xs">{item.tip}</p>}
                       <p className="my-2 text-xl font-black">{formatValue(item)}</p>
                     </div>
-                    {/* item.charts?.current?.length > 0 && <pre>CHART GOES HERE</pre> */}
+                    {item.charts?.current?.length > 0 && <pre>CHART GOES HERE</pre>}
                   </div>
                 ) : (
                   ''
