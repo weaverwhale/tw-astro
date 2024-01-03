@@ -5,7 +5,7 @@ import Navigation from '@/components/Navigation.astro'
 import SummaryComponent from '@/components/Summary.astro'
 import fetchSummaryData from '@/helpers/fetchSummaryData'
 
-const title = `Summary - ${siteName}`
+const title = `SSR Summary - ${siteName}`
 const url = Astro.request.url
 const params = new URL(url).searchParams
 const shop = Astro.cookies.get('shop')?.value ?? params?.get('shop') ?? null

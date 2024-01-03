@@ -4,7 +4,7 @@ import Layout from '@/layouts/Layout.astro'
 import Navigation from '@/components/Navigation.astro'
 import ClientSummaryComponent from '@/components/ClientSummary.tsx'
 
-const title = `Summary - ${siteName}`
+const title = `Client Summary - ${siteName}`
 const url = Astro.request.url
 const params = new URL(url).searchParams
 const shop = Astro.cookies.get('shop')?.value ?? params?.get('shop') ?? null
@@ -21,7 +21,7 @@ if (!token || !shop) return Astro.redirect('/')
     >
       <div class="flex flex-col items-center justify-center">
         <h1 class="text-3xl font-bold mb-4">Summary</h1>
-        <ClientSummaryComponent {shop} {token} client:load />
+        <ClientSummaryComponent {shop} {token} client:only />
       </div>
     </div>
   </div>

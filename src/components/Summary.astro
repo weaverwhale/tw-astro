@@ -1,15 +1,9 @@
 ---
-import {
-  formatNumber,
-  // formatSparkChartData,
-  formatValue,
-  groupData,
-  toNumber,
-} from '@/helpers/chartHelpers'
-
+import { formatNumber, formatValue, groupData, toNumber } from '@/helpers/chartHelpers'
 import type { DictatedData, IServiceMap } from '@/types/Types'
 import { ServiceMap } from '@/types/Types'
-// import { SourceIcons } from '@/components/SourceIcons'
+import ServerSummaryChart from '@/components/ServerSummaryChart'
+import { SourceIcons } from '@/components/SourceIcons'
 
 interface Props {
   data: any
@@ -35,8 +29,7 @@ const dictatedData = groupData(data?.metrics ?? [])
             <div class="mt-4">
               <div>
                 <h3 class="mb-4 mt-10 flex items-center gap-2 text-xl capitalize">
-                  {/* <SourceIcons source={g as IServiceMap} client:load /> {plainTextService} */}
-                  {plainTextService}
+                  <SourceIcons source={g as IServiceMap} client:only /> {plainTextService}
                 </h3>
               </div>
               <div class="grid w-full flex-wrap items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -64,7 +57,13 @@ const dictatedData = groupData(data?.metrics ?? [])
                         {item.tip && <p class="text-xs">{item.tip}</p>}
                         <p class="my-2 text-xl font-black">{formatValue(item)}</p>
                       </div>
-                      {/* item.charts?.current?.length > 0 && <pre>CHART GOES HERE</pre> */}
+                      {item.charts?.current?.length > 0 && (
+                        <ServerSummaryChart
+                          client:only
+                          item={item}
+                          plainTextService={plainTextService}
+                        />
+                      )}
                     </div>
                   ) : (
                     ''
