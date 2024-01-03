@@ -4,7 +4,6 @@ interface Props {
 }
 
 const { token } = Astro.props
-if (token) Astro.redirect('/summary')
 ---
 
 <div class="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
@@ -23,6 +22,7 @@ if (token) Astro.redirect('/summary')
             >
               Go to summary page
             </button>
+            <div id="timer" />
           </>
         ) : (
           <>
@@ -76,10 +76,18 @@ if (token) Astro.redirect('/summary')
 </div>
 
 <script>
+  const now = new Date()
+  const timer = document.getElementById('timer')
   const tokenInput = document.getElementById('token') as HTMLInputElement
   const shopInput = document.getElementById('shop') as HTMLInputElement
   const submitButton = document.getElementById('submit') as HTMLButtonElement
   const goToSummaryButton = document.getElementById('go-to-summary') as HTMLButtonElement
+
+  function millisToMinutes(millis: number) {
+    const minutes = Math.floor(millis / 60000)
+    const seconds = (millis % 60000) / 1000
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds.toFixed(0)
+  }
 
   submitButton?.addEventListener('click', () => {
     const token = tokenInput?.value ?? null
@@ -117,6 +125,9 @@ if (token) Astro.redirect('/summary')
 
     window.location.href = '/summary'
 
-    setInterval(() => {}, 100)
+    if (!timer) return
+    setInterval(() => {
+      timer.innerHTML = millisToMinutes(new Date().getTime() - now.getTime()) + ' s'
+    }, 1)
   })
 </script>
