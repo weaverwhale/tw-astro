@@ -18,7 +18,7 @@ import '@shopify/polaris-viz/build/esm/styles.css'
 export const ClientSummary = ({ token, shop }: { token: string; shop: string }) => {
   if (!token || !shop) return null
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [dictatedData, setDictatedData] = useState({} as DictatedData)
 
   const fetchSummaryPage = async () => {
@@ -45,7 +45,18 @@ export const ClientSummary = ({ token, shop }: { token: string; shop: string }) 
   }
 
   return loading ? (
-    <>loading...</>
+    <div className="grid w-full flex-wrap items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {Array.from({ length: 20 }).map((_, j) => (
+        <>
+          <div key={j} className=" w-full rounded border p-4 shadow-md">
+            <div className="mb-4 h-5 w-full animate-pulse bg-gray-300"></div>
+            <div className="mb-3 h-2 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
+            <div className="mb-3 h-7 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
+            <div className="h-12 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
+          </div>
+        </>
+      ))}
+    </div>
   ) : (
     <PolarisVizProvider>
       {Object.keys(dictatedData).map((g: any) => {
