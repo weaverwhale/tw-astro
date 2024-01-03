@@ -14,7 +14,8 @@ const { token } = Astro.props
         token ? (
           <>
             <p>
-              We have detected your <code>key</code>! You can now view the summary page!
+              We have detected your <code>key</code> and <code>shop</code>! You can now view the
+              summary page!
             </p>
             <button
               id="go-to-summary"
@@ -22,7 +23,6 @@ const { token } = Astro.props
             >
               Go to summary page
             </button>
-            <div id="timer" />
           </>
         ) : (
           <>
@@ -76,18 +76,10 @@ const { token } = Astro.props
 </div>
 
 <script>
-  const now = new Date()
-  const timer = document.getElementById('timer')
   const tokenInput = document.getElementById('token') as HTMLInputElement
   const shopInput = document.getElementById('shop') as HTMLInputElement
   const submitButton = document.getElementById('submit') as HTMLButtonElement
   const goToSummaryButton = document.getElementById('go-to-summary') as HTMLButtonElement
-
-  function millisToMinutes(millis: number) {
-    const minutes = Math.floor(millis / 60000)
-    const seconds = (millis % 60000) / 1000
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds.toFixed(0)
-  }
 
   submitButton?.addEventListener('click', () => {
     const token = tokenInput?.value ?? null
@@ -124,10 +116,5 @@ const { token } = Astro.props
     `
 
     window.location.href = '/summary'
-
-    if (!timer) return
-    setInterval(() => {
-      timer.innerHTML = millisToMinutes(new Date().getTime() - now.getTime()) + ' s'
-    }, 1)
   })
 </script>
