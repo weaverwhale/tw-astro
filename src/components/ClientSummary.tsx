@@ -53,13 +53,11 @@ export const ClientSummary = ({ token, shop }: { token: string; shop: string }) 
       </div>
       <div className="grid w-full flex-wrap items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {Array.from({ length: 20 }).map((_, j) => (
-          <div className="mt-4">
-            <div key={j} className=" w-full rounded border p-4 shadow-md">
-              <div className="mb-4 h-5 w-full animate-pulse bg-gray-300"></div>
-              <div className="mb-3 h-2 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
-              <div className="mb-3 h-7 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
-              <div className="h-12 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
-            </div>
+          <div key={j} className=" w-full rounded border p-4 shadow-md">
+            <div className="mb-4 h-5 w-full animate-pulse bg-gray-300"></div>
+            <div className="mb-3 h-2 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
+            <div className="mb-3 h-7 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
+            <div className="h-12 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
           </div>
         ))}
       </div>
