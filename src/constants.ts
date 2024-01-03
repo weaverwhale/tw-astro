@@ -11,7 +11,11 @@ export const links = [
 
 export const loggedInLinks = [
   {
-    name: 'Summary',
+    name: 'SSR',
     url: '/summary',
+  },
+  {
+    name: 'Client',
+    url: '/client-summary',
   },
 ]
