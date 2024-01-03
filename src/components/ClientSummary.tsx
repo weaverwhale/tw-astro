@@ -12,7 +12,6 @@ import type { DictatedData, IServiceMap } from '@/types/Types'
 import { ServiceMap } from '@/types/Types'
 import { SparkChart } from '@/components/Charts'
 import { SourceIcons } from '@/components/SourceIcons'
-import fetchSummaryData from '@/helpers/fetchSummaryData'
 
 import '@shopify/polaris-viz/build/esm/styles.css'
 
@@ -25,7 +24,12 @@ export const ClientSummary = ({ token, shop }: { token: string; shop: string }) 
   const fetchSummaryPage = async () => {
     setLoading(true)
 
-    const data = await fetchSummaryData(token, shop).catch(() => setLoading(false))
+    const data = await fetch(`/.netlify/functions/summary?token=${token}&shop=${shop}`)
+      .then((res) => res.json())
+      .catch((err) => {
+        console.error(err)
+        setLoading(false)
+      })
 
     if (data?.metrics) {
       setDictatedData(groupData(data.metrics))

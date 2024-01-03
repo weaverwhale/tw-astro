@@ -3,8 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "netlify dev",
+    "start": "netlify dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -14,6 +14,7 @@
     "@astrojs/netlify": "^4.0.1",
     "@astrojs/react": "^3.0.8",
     "@astrojs/tailwind": "^5.0.4",
+    "@netlify/functions": "^2.4.1",
     "@shopify/polaris-viz": "^10.1.0",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
@@ -28,6 +29,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "netlify-cli": "^17.11.0",
     "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.2",
     "prettier-plugin-svelte": "^3.1.2"

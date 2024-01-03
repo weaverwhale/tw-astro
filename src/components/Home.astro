@@ -14,7 +14,7 @@ const { token } = Astro.props
         token ? (
           <>
             <p>
-              We have detected your <code>key</code> and <code>shop</code>! You can now view the
+              We have detected your <code>token</code> and <code>shop</code>! You can now view the
               summary page!
             </p>
             <button
@@ -27,12 +27,12 @@ const { token } = Astro.props
         ) : (
           <>
             <p>
-              We have not detected both a <code>key</code> and <code>shop</code> params in the URL.
-              Please provide them for us to get started, or visit the URL with the token provided.
+              We have NOT detected a <code>token</code> or a <code>shop</code> value. Please provide
+              them for us to get started, or visit the URL with the params in it.
             </p>
             <p class="mt-4">
               For example:
-              <code>https://tw-astro.netlify.app?key=YOUR_TW_TOKEN&shop=YOUR_SHOP</code>
+              <code>https://tw-astro.netlify.app?token=YOUR_TW_API_KEY&shop=YOUR_SHOP</code>
             </p>
             <p class="mt-4">
               You can obtain your <code>key</code>{' '}
