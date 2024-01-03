@@ -4,7 +4,6 @@ Technologies:
 
 1. [TypeScript](https://www.typescriptlang.org/)
 1. [Astro 4](https://astro.build/)
-1. [Svelte](https://svelte.dev/docs/introduction)
 1. [React](https://react.dev/learn)
 1. [Tailwind](https://tailwindcss.com/)
 
