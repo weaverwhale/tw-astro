@@ -1,4 +1,4 @@
-# TW 3.0
+# SSR/SSG Summary Demo
 
 Technologies:
 
