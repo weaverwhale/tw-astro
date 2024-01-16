@@ -1,4 +1,5 @@
-import fetchSummaryData from '@/helpers/fetchSummaryData'
+// import fetchSummaryData from '@/helpers/fetchSummaryData'
+import { summaryData } from '../../summary-data'
 
 const origins = {
   'Access-Control-Allow-Origin': '*', // Required for CORS support to work
@@ -11,7 +12,9 @@ export async function handler(event) {
     const shop = event?.queryStringParameters?.shop ?? event?.body?.split('shop=')[1] ?? null
     if (!token || !shop) throw new Error('Missing token or shop')
 
-    const data = await fetchSummaryData(token, shop)
+    // too slow for demo so we're going to return demo data
+    // const data = await fetchSummaryData(token, shop)
+    const data = summaryData
 
     const response = {
       statusCode: 200,

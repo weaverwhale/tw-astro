@@ -15,7 +15,7 @@ export const loggedInLinks = [
     url: '/summary',
   },
   {
-    name: 'Client',
-    url: '/client-summary',
+    name: 'CSR',
+    url: '/csr-summary',
   },
 ]
