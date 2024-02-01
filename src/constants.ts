@@ -18,4 +18,8 @@ export const loggedInLinks = [
     name: 'CSR',
     url: '/csr-summary',
   },
+  {
+    name: 'Logout',
+    url: '/logout',
+  },
 ]
