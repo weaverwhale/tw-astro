@@ -3,8 +3,8 @@ import { siteName } from '@/constants'
 import Layout from '@/layouts/Layout.astro'
 
 const shop = Astro.cookies.get('shop')?.value ?? null
-Astro.cookies.delete('token')
 Astro.cookies.delete('shop')
+Astro.cookies.delete('token')
 
 const title = `Logging out | ${siteName}`
 const description = `Logging out from ${shop}`
