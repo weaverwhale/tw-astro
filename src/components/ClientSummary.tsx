@@ -75,7 +75,7 @@ export const ClientSummary = ({ token, shop }: { token: string; shop: string }) 
 
         return (
           filteredGroup.length > 0 && (
-            <div className="mt-4 w-full">
+            <div key={g} className="mt-4 w-full">
               <div>
                 <h3 className="mb-4 mt-10 flex items-center gap-2 text-xl capitalize">
                   <SourceIcons source={g as IServiceMap} /> {plainTextService}
