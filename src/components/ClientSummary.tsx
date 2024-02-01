@@ -12,6 +12,7 @@ import type { DictatedData, IServiceMap } from '@/types/Types'
 import { ServiceMap } from '@/types/Types'
 import { SparkChart } from '@/components/Charts'
 import { SourceIcons } from '@/components/SourceIcons'
+import { summaryData } from '../../summary-data'
 
 import '@shopify/polaris-viz/build/esm/styles.css'
 
@@ -24,12 +25,14 @@ export const ClientSummary = ({ token, shop }: { token: string; shop: string }) 
   const fetchSummaryPage = async () => {
     setLoading(true)
 
-    const data = await fetch(`/.netlify/functions/summary?token=${token}&shop=${shop}`)
-      .then((res) => res.json())
-      .catch((err) => {
-        console.error(err)
-        setLoading(false)
-      })
+    // const data = await fetch(`/.netlify/functions/summary?token=${token}&shop=${shop}`)
+    //   .then((res) => res.json())
+    //   .catch((err) => {
+    //     console.error(err)
+    //     setLoading(false)
+    //   })
+
+    const data = summaryData
 
     if (data?.metrics) {
       setDictatedData(groupData(data.metrics))
@@ -79,14 +82,14 @@ export const ClientSummary = ({ token, shop }: { token: string; shop: string }) 
                 </h3>
               </div>
               <div className="grid w-full flex-wrap items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {group.map((item) => {
+                {group.map((item, i) => {
                   const delta = toNumber(item.delta)
                   const deltaIsPositive =
                     (delta > 0 && (item.positiveComparison > 0 || !item.positiveComparison)) ||
                     (delta < 0 && item.positiveComparison < 0)
 
                   return delta ? (
-                    <div className="w-full rounded border p-4 shadow-md">
+                    <div key={i} className="w-full rounded border p-4 shadow-md">
                       <div className="mb-4">
                         <div className="flex justify-between">
                           <div>

@@ -1,9 +1,17 @@
 ---
 interface Props {
   token: string | null
+  shop: string | null
 }
 
-const { token } = Astro.props
+const envToken = import.meta.env.API_KEY
+const envShop = import.meta.env.SHOP_URL
+const isLocalhost = import.meta.env.MODE === 'development'
+const { token, shop } = Astro.props
+const buttons = [
+  { id: 'ssr', url: '/summary' },
+  { id: 'csr', url: '/csr-summary' },
+]
 ---
 
 <div class="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
@@ -17,12 +25,15 @@ const { token } = Astro.props
               We have detected your <code>token</code> and <code>shop</code>! You can now view the
               summary page! There is an SSR version, and a CSR version.
             </p>
-            <button
-              id="go-to-summary"
-              class="group flex justify-center items-center disabled:opacity-30 disabled:pointer-events-none py-2 px-4 rounded-md text-white bg-black hover:bg-black/80 focus:outline-none focus:ring-2 transition duration-200 ease-in-out mt-4 w-full"
-            >
-              Go to SSR page
-            </button>
+            {buttons.map(({ id, url }) => (
+              <button
+                id={`go-to-${id}`}
+                data-url={url}
+                class="group flex justify-center items-center disabled:opacity-30 disabled:pointer-events-none py-2 px-4 rounded-md text-white bg-black hover:bg-black/80 focus:outline-none focus:ring-2 transition duration-200 ease-in-out mt-4 w-full"
+              >
+                Go to {id.toUpperCase()}
+              </button>
+            ))}
           </>
         ) : (
           <>
@@ -32,7 +43,10 @@ const { token } = Astro.props
             </p>
             <p class="mt-4">
               For example:
-              <code>https://tw-astro.netlify.app?token=YOUR_TW_API_KEY&shop=YOUR_SHOP</code>
+              <code>
+                {(isLocalhost ? 'http://localhost:3000/' : 'https://tw-astro.netlify.app') +
+                  '?token=YOUR_TW_API_KEY&shop=YOUR_SHOP'}
+              </code>
             </p>
             <p class="mt-4">
               You can obtain your <code>key</code>{' '}
@@ -53,6 +67,7 @@ const { token } = Astro.props
                 name="token"
                 class="shadow-sm focus:ring-black focus:border-black block w-full sm:text-sm border-gray-300 rounded-md p-4"
                 placeholder="Your Triple Whale API Key"
+                value={token ?? envToken ?? ''}
               />
               <input
                 type="text"
@@ -60,6 +75,7 @@ const { token } = Astro.props
                 name="shop"
                 class="shadow-sm focus:ring-black focus:border-black block w-full sm:text-sm border-gray-300 rounded-md p-4"
                 placeholder="Your Shopify Store URL"
+                value={shop ?? envShop ?? ''}
               />
               <button
                 id="submit"
@@ -79,7 +95,8 @@ const { token } = Astro.props
   const tokenInput = document.getElementById('token') as HTMLInputElement
   const shopInput = document.getElementById('shop') as HTMLInputElement
   const submitButton = document.getElementById('submit') as HTMLButtonElement
-  const goToSummaryButton = document.getElementById('go-to-summary') as HTMLButtonElement
+  const ssrButton = document.getElementById('go-to-ssr') as HTMLButtonElement
+  const csrButton = document.getElementById('go-to-csr') as HTMLButtonElement
 
   submitButton?.addEventListener('click', () => {
     const token = tokenInput?.value ?? null
@@ -90,31 +107,36 @@ const { token } = Astro.props
     }
   })
 
-  goToSummaryButton?.addEventListener('click', () => {
-    goToSummaryButton.disabled = true
-    goToSummaryButton.innerHTML = `
-      <svg
-        class="hidden motion-reduce:hidden animate-spin -ml-1 mr-3 h-5 w-5 text-white group-disabled:block"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          class="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          stroke-width="4"
-        />
-        <path
-          class="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-        />
-      </svg>
-      Loading summary page...
-    `
+  const doButtonClick = (el: HTMLButtonElement, url: string) => {
+    if (el) {
+      el.disabled = true
+      el.innerHTML = `
+        <svg
+          class="hidden motion-reduce:hidden animate-spin -ml-1 mr-3 h-5 w-5 text-white group-disabled:block"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          />
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          />
+        </svg>
+      `
+    }
 
-    window.location.href = '/summary'
+    if (url) window.location.href = url
+  }
+
+  ;[ssrButton, csrButton].forEach((el) => {
+    el?.addEventListener('click', () => doButtonClick(el, el.dataset?.url ?? ''))
   })
 </script>
