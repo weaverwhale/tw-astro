@@ -16,7 +16,7 @@ export const ServerSummaryChart = ({
 
   return (
     <PolarisVizProvider>
-      <RenderIfVisible defaultHeight={60} stayRendered={true}>
+      <RenderIfVisible defaultHeight={40} stayRendered={true}>
         <SparkChart accessibilityLabel={plainTextService} data={formatSparkChartData(item)} />
       </RenderIfVisible>
     </PolarisVizProvider>

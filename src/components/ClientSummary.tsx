@@ -107,7 +107,7 @@ export const ClientSummary = ({ token, shop }: { token: string; shop: string }) 
                         <p className="my-2 text-xl font-black">{formatValue(item)}</p>
                       </div>
                       {item.charts?.current?.length > 0 && (
-                        <RenderIfVisible defaultHeight={60} stayRendered={true}>
+                        <RenderIfVisible defaultHeight={40} stayRendered={true}>
                           <SparkChart
                             accessibilityLabel={plainTextService}
                             data={formatSparkChartData(item)}
