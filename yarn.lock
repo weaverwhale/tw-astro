@@ -15,12 +15,12 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@astrojs/check@^0.3.4":
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/@astrojs/check/-/check-0.3.4.tgz#b09d04f50570b4f579e336a30e7237ee9fd839bf"
-  integrity sha512-Wi4KwW38J3GCd/U6LH2UuU4uc4P/K1WYaqhoKm2o7rVoGhQfO+RWrSO26rUPRXYbmae8JugAgpCmsHC8bt5RlA==
+"@astrojs/check@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@astrojs/check/-/check-0.4.1.tgz#1ff60045202a57d5ca1c9c7a0fbecbf44474c8d2"
+  integrity sha512-XEsuU4TlWkgcsvdeessq5mXLXV1fejtxIioCPv/FfhTzb1bDYe2BtLiSBK+rFTyD9Hl686YOas9AGNMJcpoRsw==
   dependencies:
-    "@astrojs/language-server" "^2.5.5"
+    "@astrojs/language-server" "^2.6.2"
     chokidar "^3.5.3"
     fast-glob "^3.3.1"
     kleur "^4.1.5"
@@ -41,7 +41,7 @@
   resolved "https://registry.yarnpkg.com/@astrojs/internal-helpers/-/internal-helpers-0.2.1.tgz#4e2e6aabaa9819f17119aa10f413c4d6122c94cf"
   integrity sha512-06DD2ZnItMwUnH81LBLco3tWjcZ1lGU9rLCCBaeUCGYe9cI0wKyY2W3kDyoW1I6GmcWgt1fu+D1CTvz+FIKf8A==
 
-"@astrojs/language-server@^2.5.5":
+"@astrojs/language-server@^2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@astrojs/language-server/-/language-server-2.6.2.tgz#d83ff8966041b22fbcf1c1bf858c292219a6d131"
   integrity sha512-RYzPRhS/WBXK5JtfR+0+nGj+N3VbJd5jU/uSNUev9baUx/RLmUwDk1f6Oy8QDEfDDLAr76Ig8YeDD/nxPdBSLw==
@@ -85,10 +85,10 @@
     unist-util-visit "^5.0.0"
     vfile "^6.0.1"
 
-"@astrojs/netlify@^4.0.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@astrojs/netlify/-/netlify-4.1.1.tgz#3e667599a49f25c1dd8aac6c018e46bd5d894532"
-  integrity sha512-ynCldf0BafT0s/E6hOed8YqrxyD48iukxtPBTatQytg/XsSr16cQ6em8HbMMV3pe4sE5xImdXtQcI1Xg01rUHw==
+"@astrojs/netlify@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@astrojs/netlify/-/netlify-5.0.1.tgz#b090a4f8a8208781d5a915dc26170cca59c8e9bb"
+  integrity sha512-yV2fCiXLeMYqdWuEafiG0wZMWffvTr26IQEtkHZ8HW4wplSTCFZYtb/HApWrD+3lhc+1IbRmos1LsYlMnjogBQ==
   dependencies:
     "@astrojs/underscore-redirects" "^0.3.3"
     "@netlify/functions" "^2.0.1"
@@ -101,7 +101,7 @@
   dependencies:
     prismjs "^1.29.0"
 
-"@astrojs/react@^3.0.8":
+"@astrojs/react@^3.0.9":
   version "3.0.9"
   resolved "https://registry.yarnpkg.com/@astrojs/react/-/react-3.0.9.tgz#2ca7240c884d403b13d83e938f277b981376c523"
   integrity sha512-31J5yF5p9yBFV1axBooLA9PB4B2+MYm7swWhtlezSsJiUNXRFo5Is9qI3teJ7cKgmaCv+ZA593Smskko0NGaDQ==
@@ -109,7 +109,7 @@
     "@vitejs/plugin-react" "^4.2.0"
     ultrahtml "^1.3.0"
 
-"@astrojs/tailwind@^5.0.4":
+"@astrojs/tailwind@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@astrojs/tailwind/-/tailwind-5.1.0.tgz#f63d285825f448704dbdccb3430980fee7ba7d26"
   integrity sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==
@@ -1596,10 +1596,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.9.6.tgz#2c1fb69e02a3f1506f52698cfdc3a8b6386df9a6"
   integrity sha512-jqzNLhNDvIZOrt69Ce4UjGRpXJBzhUBzawMwnaDAwyHriki3XollsewxWzOzz+4yOFDkuJHtTsZFwMxhYJWmLQ==
 
-"@shopify/polaris-viz-core@^10.4.0":
-  version "10.4.0"
-  resolved "https://registry.yarnpkg.com/@shopify/polaris-viz-core/-/polaris-viz-core-10.4.0.tgz#4b58949206f2b02110e589792c086eaff66d19b8"
-  integrity sha512-me8CwpI7f1vKxl1kmfY4qKy61YSeFhG0QKg9zLtDaukGSbdqeyiVX1pzweHUQeVkCtsIJNHYgndMEyvcZlwt2Q==
+"@shopify/polaris-viz-core@^10.4.1":
+  version "10.4.1"
+  resolved "https://registry.yarnpkg.com/@shopify/polaris-viz-core/-/polaris-viz-core-10.4.1.tgz#545a22ab1c8dbae71b3b24a3c565707d046bdb99"
+  integrity sha512-OLSFO9AyRNDvA3Qjiuxn6Vqd1h6H8aoIvp/0o9a4jvYpiNWHbi5b0XPAMerkgqyMPaVkfPu1N2K6YG76Z54bww==
   dependencies:
     "@react-spring/animated" "^9.4.5"
     "@react-spring/core" "^9.4.5"
@@ -1610,13 +1610,13 @@
     d3-shape "^3.1.0"
 
 "@shopify/polaris-viz@^10.1.0":
-  version "10.4.0"
-  resolved "https://registry.yarnpkg.com/@shopify/polaris-viz/-/polaris-viz-10.4.0.tgz#39a8825c729b9022d529f03118740f7499e3bfdc"
-  integrity sha512-SA8WGY7YAsosUD/8no4hSrz0GDVfcPB+uOBebrhabiBim58N2nRvvdzHJ7K5zw6D0/sa5hJZ8iKMlrPD2wbXkw==
+  version "10.4.1"
+  resolved "https://registry.yarnpkg.com/@shopify/polaris-viz/-/polaris-viz-10.4.1.tgz#cc2a202ce8178b78dc2e7f686ea39c6a1a0ca933"
+  integrity sha512-097vTUA4Pty3jFBMJgs0Z8ptJRqz1/aVg5cRwf7pDEZax/fGQmWB0hMnmtXgYm57aY/NTogmL7AikEZ878cBxg==
   dependencies:
     "@juggle/resize-observer" "^3.3.1"
     "@react-spring/web" "^9.4.5"
-    "@shopify/polaris-viz-core" "^10.4.0"
+    "@shopify/polaris-viz-core" "^10.4.1"
     d3-array "^3.2.0"
     d3-color "^3.1.0"
     d3-path "^3.0.1"
@@ -1785,9 +1785,9 @@
     "@types/unist" "^2"
 
 "@types/node@*":
-  version "20.11.15"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.15.tgz#b853a86cfedbc768360c552b4653302b4e7417bf"
-  integrity sha512-gscmuADZfvNULx1eyirVbr3kVOVZtpQtzKMCZpeSZcN6MfbkRXAR4s9/gsQ4CzxLHw6EStDtKLNtSDL3vbq05A==
+  version "20.11.16"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.16.tgz#4411f79411514eb8e2926f036c86c9f0e4ec6708"
+  integrity sha512-gKb0enTmRCzXSSUJDq6/sPcqrfCv2mkkG6Jt/clpn5eiCbKTY+SgZUxo+p8ZKMof5dCp9vHQUAB7wOUTod22wQ==
   dependencies:
     undici-types "~5.26.4"
 
@@ -1910,9 +1910,9 @@
     resolve-from "^5.0.0"
 
 "@vercel/nft@^0.26.0":
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/@vercel/nft/-/nft-0.26.2.tgz#c5018201dbb324d7fac455be6cee03d34ebd9ce8"
-  integrity sha512-bxe2iShmKZi7476xYamyKvhhKwQ6JPEtQ2FSq1AjMUH2buMd8LQMkdoHinTqZYc+1sMTh3G0ARdjzNvV1FEisA==
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/@vercel/nft/-/nft-0.26.3.tgz#9d8f5195565d67e0fc478a9d611e3236e1512c68"
+  integrity sha512-h1z/NN9ppS4YOKwSgBoopJlhm7tS2Qb/9Ld1HXjDpvvTE7mY0xVD8nllXs+RihD9uTGJISOIMzp18Eg0EApaMA==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.5"
     "@rollup/pluginutils" "^4.0.0"
@@ -2412,7 +2412,7 @@ ast-module-types@^5.0.0:
   resolved "https://registry.yarnpkg.com/ast-module-types/-/ast-module-types-5.0.0.tgz#32b2b05c56067ff38e95df66f11d6afd6c9ba16b"
   integrity sha512-JvqziE0Wc0rXQfma0HZC/aY7URXHFuZV84fJRtP8u+lhp0JYCNd5wJzVXP45t0PH0Mej3ynlzvdyITYIu0G4LQ==
 
-astro@^4.0.7:
+astro@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/astro/-/astro-4.3.0.tgz#5d13c00aaaaf16e6832a53cd4c924454df24e4b8"
   integrity sha512-DSn7q7KJ9lmA7B3faz6uaIIRTzJduKNYRAsgXDn+wH1Jso33PFOU3ZcI4knlMAqhFW3MX8WorB8Hg6kR+waQXg==
