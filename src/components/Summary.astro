@@ -32,8 +32,9 @@ const dictatedData = groupData(data?.metrics ?? [])
               <div>
                 <h3 class="mb-4 mt-10 flex items-center gap-2 text-xl capitalize">
                   <div class="min-w-[20px]">
-                    <SourceIcons source={g as IServiceMap} client:only="react" /> {plainTextService}
+                    <SourceIcons source={g as IServiceMap} client:only="react" />
                   </div>
+                  {plainTextService}
                 </h3>
               </div>
               <div class="grid w-full flex-wrap items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
