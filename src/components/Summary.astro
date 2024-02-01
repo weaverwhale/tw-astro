@@ -5,6 +5,8 @@ import { ServiceMap } from '@/types/Types'
 import ServerSummaryChart from '@/components/ServerSummaryChart'
 import { SourceIcons } from '@/components/SourceIcons'
 
+import '@shopify/polaris-viz/build/esm/styles.css'
+
 interface Props {
   data: any
 }
@@ -59,7 +61,7 @@ const dictatedData = groupData(data?.metrics ?? [])
                       </div>
                       {item.charts?.current?.length > 0 && (
                         <ServerSummaryChart
-                          client:only
+                          client:only="react"
                           item={item}
                           plainTextService={plainTextService}
                         />
