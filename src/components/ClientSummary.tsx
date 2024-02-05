@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, Suspense } from 'react'
 import {
   formatNumber,
   formatSparkChartData,
@@ -12,6 +12,7 @@ import type { DictatedData, IServiceMap } from '@/types/Types'
 import { ServiceMap } from '@/types/Types'
 import { SparkChart } from '@/components/Charts'
 import { SourceIcons } from '@/components/SourceIcons'
+import { SummaryLoading } from '@/components/SummaryLoading'
 import { summaryData } from '../../summary-data'
 
 import '@shopify/polaris-viz/build/esm/styles.css'
@@ -48,83 +49,69 @@ export const ClientSummary = ({ token, shop }: { token: string; shop: string }) 
   }
 
   return loading ? (
-    <div className="mt-4 w-full">
-      <div>
-        <h3 className="mb-4 mt-10 flex items-center gap-2 text-xl capitalize">
-          <SourceIcons source={'tripleWhale' as IServiceMap} /> Loading...
-        </h3>
-      </div>
-      <div className="grid w-full flex-wrap items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {Array.from({ length: 20 }).map((_, j) => (
-          <div key={j} className=" w-full rounded border p-4 shadow-md">
-            <div className="mb-4 h-5 w-full animate-pulse bg-gray-300"></div>
-            <div className="mb-3 h-2 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
-            <div className="mb-3 h-7 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
-            <div className="h-12 w-full animate-pulse bg-gray-200 leading-relaxed"></div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <SummaryLoading />
   ) : (
-    <PolarisVizProvider>
-      {Object.keys(dictatedData).map((g: any) => {
-        // @ts-ignore
-        const group = dictatedData[g] as DictatedData[IServiceMap]
-        const filteredGroup = group.filter((item) => item.values?.current !== 0 && item.delta)
-        const plainTextService = ServiceMap[g as IServiceMap]
+    <Suspense fallback={<SummaryLoading />}>
+      <PolarisVizProvider>
+        {Object.keys(dictatedData).map((g: any) => {
+          // @ts-ignore
+          const group = dictatedData[g] as DictatedData[IServiceMap]
+          const filteredGroup = group.filter((item) => item.values?.current !== 0 && item.delta)
+          const plainTextService = ServiceMap[g as IServiceMap]
 
-        return (
-          filteredGroup.length > 0 && (
-            <div key={g} className="mt-4 w-full">
-              <div>
-                <h3 className="mb-4 mt-10 flex items-center gap-2 text-xl capitalize">
-                  <SourceIcons source={g as IServiceMap} /> {plainTextService}
-                </h3>
-              </div>
-              <div className="grid w-full flex-wrap items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {group.map((item, i) => {
-                  const delta = toNumber(item.delta)
-                  const deltaIsPositive =
-                    (delta > 0 && (item.positiveComparison > 0 || !item.positiveComparison)) ||
-                    (delta < 0 && item.positiveComparison < 0)
+          return (
+            filteredGroup.length > 0 && (
+              <div key={g} className="mt-4 w-full">
+                <div>
+                  <h3 className="mb-4 mt-10 flex items-center gap-2 text-xl capitalize">
+                    <SourceIcons source={g as IServiceMap} /> {plainTextService}
+                  </h3>
+                </div>
+                <div className="grid w-full flex-wrap items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                  {group.map((item, i) => {
+                    const delta = toNumber(item.delta)
+                    const deltaIsPositive =
+                      (delta > 0 && (item.positiveComparison > 0 || !item.positiveComparison)) ||
+                      (delta < 0 && item.positiveComparison < 0)
 
-                  return delta ? (
-                    <div key={i} className="w-full rounded border p-4 shadow-md">
-                      <div className="mb-4">
-                        <div className="flex justify-between">
-                          <div>
-                            <strong>{item.title}</strong>
-                          </div>
-
-                          <div className="flex items-center gap-1">
-                            <div className={deltaIsPositive ? 'text-[green]' : 'text-[red]'}>
-                              {delta === 0 ? '-' : delta > 0 ? '↑' : '↓'}
+                    return delta ? (
+                      <div key={i} className="w-full rounded border p-4 shadow-md">
+                        <div className="mb-4">
+                          <div className="flex justify-between">
+                            <div>
+                              <strong>{item.title}</strong>
                             </div>
-                            <span>{formatNumber(item.delta)}%</span>
+
+                            <div className="flex items-center gap-1">
+                              <div className={deltaIsPositive ? 'text-[green]' : 'text-[red]'}>
+                                {delta === 0 ? '-' : delta > 0 ? '↑' : '↓'}
+                              </div>
+                              <span>{formatNumber(item.delta)}%</span>
+                            </div>
                           </div>
+                          {item.tip && <p className="text-xs">{item.tip}</p>}
+                          <p className="my-2 text-xl font-black">{formatValue(item)}</p>
                         </div>
-                        {item.tip && <p className="text-xs">{item.tip}</p>}
-                        <p className="my-2 text-xl font-black">{formatValue(item)}</p>
+                        {item.charts?.current?.length > 0 && (
+                          <RenderIfVisible defaultHeight={40} stayRendered={true}>
+                            <SparkChart
+                              accessibilityLabel={plainTextService}
+                              data={formatSparkChartData(item)}
+                            />
+                          </RenderIfVisible>
+                        )}
                       </div>
-                      {item.charts?.current?.length > 0 && (
-                        <RenderIfVisible defaultHeight={40} stayRendered={true}>
-                          <SparkChart
-                            accessibilityLabel={plainTextService}
-                            data={formatSparkChartData(item)}
-                          />
-                        </RenderIfVisible>
-                      )}
-                    </div>
-                  ) : (
-                    ''
-                  )
-                })}
+                    ) : (
+                      ''
+                    )
+                  })}
+                </div>
               </div>
-            </div>
+            )
           )
-        )
-      })}
-    </PolarisVizProvider>
+        })}
+      </PolarisVizProvider>
+    </Suspense>
   )
 }
 

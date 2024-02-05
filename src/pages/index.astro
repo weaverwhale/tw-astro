@@ -7,13 +7,18 @@ import Home from '@/components/Home.astro'
 const title = `Home - ${siteName}`
 const url = Astro.request.url
 const params = new URL(url).searchParams
-const shop = Astro.cookies.get('shop')?.value ?? params?.get('shop') ?? null
-const token = Astro.cookies.get('token')?.value ?? params?.get('token') ?? null
+const t = params?.get('token') ?? null
+const s = params?.get('shop') ?? null
 
-if (token && shop) {
-  Astro.cookies.set('token', token)
-  Astro.cookies.set('shop', shop)
+if (t && s) {
+  Astro.cookies.set('token', t)
+  Astro.cookies.set('shop', s)
 }
+
+const token = Astro.cookies.get('token')?.value ?? t ?? null
+const shop = Astro.cookies.get('shop')?.value ?? s ?? null
+
+console.log(token, shop)
 ---
 
 <Layout title={title} description={description}>
