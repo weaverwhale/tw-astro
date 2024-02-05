@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { shop } = Astro.props
+const { pathname } = Astro.url
 ---
 
 <div class="sticky top-0 w-full flex justify-center z-30 transition-all">
@@ -23,7 +24,7 @@ const { shop } = Astro.props
                 <a
                   href={link.url}
                   id={id}
-                  class="font-display text-lg hover:text-gray-500 transition-all"
+                  class={`font-display text-lg hover:text-gray-500 transition-all ${pathname === link.url ? 'underline' : ''}`}
                 >
                   {link.name}
                 </a>
